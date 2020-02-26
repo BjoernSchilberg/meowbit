@@ -4,33 +4,37 @@
   - [Spezifikation](#spezifikation)
   - [Pinbelegung](#pinbelegung)
   - [Entwicklungsumgebungen](#entwicklungsumgebungen)
+    - [Microsoft MakeCode Arcade](#microsoft-makecode-arcade)
+    - [Kittenblock](#kittenblock)
+    - [Mu-Editor](#mu-editor)
   - [Dokumentation](#dokumentation)
   - [Python mit Kittenblock](#python-mit-kittenblock)
-  - [Bildschirm und Tasten](#bildschirm-und-tasten)
-  - [01 Erster Test: 01 Blinkende LED](#01-erster-test-01-blinkende-led)
-  - [02 Befehle für Leuchtdioden (LEDs)](#02-befehle-f%c3%bcr-leuchtdioden-leds)
-  - [03 Atmende LED](#03-atmende-led)
-  - [04 Tasten per Interrupt](#04-tasten-per-interrupt)
-  - [05 Töne & Melodien](#05-t%c3%b6ne--melodien)
-  - [08 Bildschirm](#08-bildschirm)
-  - [Kurzdokumentation](#kurzdokumentation)
-  - [Grundlagen](#grundlagen)
-  - [MicroPython Kurzbeispiele](#micropython-kurzbeispiele)
-    - [Universelle Tastenabfrage](#universelle-tastenabfrage)
-    - [Timing (Zeitverhalten steuern)](#timing-zeitverhalten-steuern)
-    - [LED steuern](#led-steuern)
-    - [Allzweckeingabe/-ausgabe (engl. GPIO – general purpose input/output) steuern](#allzweckeingabe-ausgabe-engl-gpio-%e2%80%93-general-purpose-inputoutput-steuern)
-    - [Konfigurieren von I/0 Ausgaben um auf externe Ereignisse zu reagieren](#konfigurieren-von-i0-ausgaben-um-auf-externe-ereignisse-zu-reagieren)
-    - [Zeitsteuerung-Timer](#zeitsteuerung-timer)
-    - [Pulsweitenmodulation (PWM)](#pulsweitenmodulation-pwm)
-    - [Analog-Digital-Wandler](#analog-digital-wandler)
-    - [Verwendung UART-Schnittstelle](#verwendung-uart-schnittstelle)
-    - [I2C-Ansteuerung](#i2c-ansteuerung)
-    - [Verwendung des Serial Peripheral Interface (SPI)](#verwendung-des-serial-peripheral-interface-spi)
-    - [Framebuffer](#framebuffer)
-  - [Fortgeschritten](#fortgeschritten)
-    - [Zeige mehrere Sprachen](#zeige-mehrere-sprachen)
-    - [Kreiselwert anzeigen](#kreiselwert-anzeigen)
+    - [Bildschirm und Tasten](#bildschirm-und-tasten)
+    - [01 Erster Test: 01 Blinkende LED](#01-erster-test-01-blinkende-led)
+    - [02 Befehle für Leuchtdioden (LEDs)](#02-befehle-f%c3%bcr-leuchtdioden-leds)
+    - [03 Atmende LED](#03-atmende-led)
+    - [04 Tasten per Interrupt](#04-tasten-per-interrupt)
+    - [05 Töne & Melodien](#05-t%c3%b6ne--melodien)
+    - [08 Bildschirm](#08-bildschirm)
+    - [Kurzdokumentation](#kurzdokumentation)
+    - [Grundlagen](#grundlagen)
+    - [MicroPython Kurzbeispiele](#micropython-kurzbeispiele)
+      - [Universelle Tastenabfrage](#universelle-tastenabfrage)
+      - [Timing (Zeitverhalten steuern)](#timing-zeitverhalten-steuern)
+      - [LED steuern](#led-steuern)
+      - [Allzweckeingabe/-ausgabe (engl. GPIO – general purpose input/output) steuern](#allzweckeingabe-ausgabe-engl-gpio-%e2%80%93-general-purpose-inputoutput-steuern)
+      - [Konfigurieren von I/0 Ausgaben um auf externe Ereignisse zu reagieren](#konfigurieren-von-i0-ausgaben-um-auf-externe-ereignisse-zu-reagieren)
+      - [Zeitsteuerung-Timer](#zeitsteuerung-timer)
+      - [Pulsweitenmodulation (PWM)](#pulsweitenmodulation-pwm)
+      - [Analog-Digital-Wandler](#analog-digital-wandler)
+      - [Verwendung UART-Schnittstelle](#verwendung-uart-schnittstelle)
+      - [I2C-Ansteuerung](#i2c-ansteuerung)
+      - [Verwendung des Serial Peripheral Interface (SPI)](#verwendung-des-serial-peripheral-interface-spi)
+      - [Framebuffer](#framebuffer)
+    - [Fortgeschritten](#fortgeschritten)
+      - [Zeige mehrere Sprachen](#zeige-mehrere-sprachen)
+      - [Kreiselwert anzeigen](#kreiselwert-anzeigen)
+  - [CircuitPython](#circuitpython)
 
 Infos und Beispiele zum Meowbit von <https://kittenbot.cn>.
 
@@ -82,19 +86,34 @@ Hier ist die Pinbelegung der 40-poligen Steckerleiste (Stand: 2020-01-18.
 
 Das Meowbit kann auf drei Arten programmiert werden:
 
-- <https://arcade.makecode.com/> von Microsoft. Das Meowbit ist eine der
+### Microsoft MakeCode Arcade
+
+<https://arcade.makecode.com/> von Microsoft. Das Meowbit ist eine der
 offiziell unterstützten Spielekonsolen.
 
-  ![Microsoft Arcade](images/00-arcade.png)
+![Microsoft Arcade](images/00-arcade.png)
 
-- <https://www.kittenbot.cc/pages/software> von Kittenbot. Es gibt eine
-Variante namens Kittenblock von MIT Scratch mit MicroPython-Integration für
-Windows und macOS und eine angepasste Version des Mu-Editors, diesen leider
-nur für Windows.
+### Kittenblock
 
-- <https://codewith.mu/en/download> von Mu-Editor. Ich habe hiermit
-allerdings noch nicht geschafft, die REPL (Befehlszeile) auf dem Meowbit
-aufzurufen.
+Kittenblock ist eine Eigenentwicklung von Kittenbot. Basiert in Teilen auf
+Scratch 3.0. Ist für Windows und Mac verfügbar:
+<https://www.kittenbot.cc/pages/software>
+
+### Mu-Editor
+
+Ein von Kittenbot speziell für den Meowbit angepassten **Mu-Editor**. Ist
+allerdings nur für Windows verfügbar:
+<https://www.kittenbot.cc/pages/software>
+
+Es kann allerdings eine Variante bspw. für Linux aus den Quellen von
+Kittenbot erstellt werden:
+
+```shell
+git clone https://gitee.com/Kittenbot/mu-kittenbot.git
+cd mu-kittenbot
+pip3 install -e ".[dev]"
+python3 run.py
+```
 
 ## Dokumentation
 
@@ -108,16 +127,16 @@ automatischen Übersetzungsfunktion.
 ## Python mit Kittenblock
 
 Um die Hardware des Meowbit in MicroPython nutzen zu können, müssen einige
-Bibliotheken auf ddas PYBFLASH-Laufwerk gezogen werden. Diese Bibliotheken
-liegen im Ordner
-`Applications/Kittenblock.app/Contents/extensions/s3ext-meowbit`:
+Bibliotheken auf das PYBFLASH-Laufwerk gezogen werden. Diese befinden sich in
+dem Scratch 3.0 Extensions Repositorie und können dort heruntergeladen
+werden: <https://github.com/KittenBot/s3ext-meowbit>.
 
 - `buzz.py` - für den Summer
 - `mpu6050.py` - für das sechsachsige Gyroskop
 - `tft.py` - für den Farbbildschirm
 - `turtle.py` - für Zeichnungen mit Turtle-Grafik
 
-## Bildschirm und Tasten
+### Bildschirm und Tasten
 
 Der Bildschirm hat eine Auflösung von 160 (horizontal) und 128 (vertikal).
 Der Ursprung (Punkt 0,0) ist oben links. Die Bildschirmmitte liegt demnach
@@ -125,13 +144,13 @@ bei (80, 64).
 
 Der Code für die folgenden Beispiele liegt im [code/](code/)-Unterverzeichnis.
 
-## 01 Erster Test: 01 Blinkende LED
+### 01 Erster Test: 01 Blinkende LED
 
 Hier ist ein erstes Programm zum Blinken der LED
 
 ![Blinkende LED](images/01-blink-led.png)
 
-## 02 Befehle für Leuchtdioden (LEDs)
+### 02 Befehle für Leuchtdioden (LEDs)
 
 Dies sind die Befehle für die eine, grüne LED am Gerät oben rechts:
 
@@ -144,13 +163,13 @@ Hier ein weiteres Beispiel:
 
 ![LED-Helligkeit](images/02-led.png)
 
-## 03 Atmende LED
+### 03 Atmende LED
 
 Wie die Statusleuchte an Macs:
 
 ![Atmende LED](images/03-breathing-led.png)
 
-## 04 Tasten per Interrupt
+### 04 Tasten per Interrupt
 
 Für gute Responsivität können die Tasten per Interrupt abgefragt werden.
 Einen passenden, blauen Block habe ich nicht gefunden (obwohl er in der
@@ -165,7 +184,7 @@ Beispiel](code/05-keys-intensity.sb3) inklusive der Blöcke gefunden:
 Die komplette Dokumentation zum Abfragen der Tasten liegt
 [hier](https://meowbit-doc.kittenbot.cn/#/micropython/reference/%E9%80%9A%E7%94%A8%E6%8C%89%E9%94%AE).
 
-## 05 Töne & Melodien
+### 05 Töne & Melodien
 
 Für Töne gibt es zwei Blöcke:
 
@@ -195,7 +214,7 @@ Das Lied wird in drei Listen verwaltet:
 Die Dokumentation der Musikfunktionen liegt
 [hier](https://meowbit-doc.kittenbot.cn/#/micropython/%E8%9C%82%E9%B8%A3%E5%99%A8).
 
-## 08 Bildschirm
+### 08 Bildschirm
 
 Hier sind die Blocke zur Anzeige auf dem Bildschirm:
 
@@ -263,7 +282,7 @@ Methoden auf der FrameBuffer-Klasse:
 - scroll (xstep, ystep)
 - blit (fbuf, x, y, key)
 
-## Kurzdokumentation
+### Kurzdokumentation
 
 Ich habe oben bereits einige Einstiegspunkte in die
 [Kurzdokumentation](https://meowbit-doc.kittenbot.cn/#/micropython/micropython%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
@@ -277,7 +296,7 @@ sind die Abschnitte:
 - Kurzbeispiele
 - Fortgeschritten
 
-## Grundlagen
+### Grundlagen
 
 - [Schnellstart](https://meowbit-doc.kittenbot.cn/#/micropython/micropython%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B)
 - [LED](https://meowbit-doc.kittenbot.cn/#/micropython/%E5%8F%AF%E7%BC%96%E7%A8%8BLED)
@@ -287,9 +306,9 @@ sind die Abschnitte:
 - [Temperatur- / Lichtsensor](https://meowbit-doc.kittenbot.cn/#/micropython/%E6%B8%A9%E5%BA%A6%E5%92%8C%E5%85%89%E7%BA%BF%E4%BC%A0%E6%84%9F%E5%99%A8)
 - [Gyroskop](https://meowbit-doc.kittenbot.cn/#/micropython/%E9%99%80%E8%9E%BA%E4%BB%AA)
 
-## MicroPython Kurzbeispiele
+### MicroPython Kurzbeispiele
 
-### Universelle Tastenabfrage
+#### Universelle Tastenabfrage
 
 ```python
 from pyb import Pin    #引入引脚类
@@ -306,7 +325,7 @@ def callback(line):
 ext = ExtInt(Pin('UP'),ExtInt.IRQ_FALLING, Pin.PULL_UP, callback)   #定义中断
 ```
 
-### Timing (Zeitverhalten steuern)
+#### Timing (Zeitverhalten steuern)
 
 ```python
 import time     #导入time模块
@@ -320,7 +339,7 @@ time.sleep_ms(1000)         #
 interval = time.ticks_diff(time.tick_ms(), start)   #计算时间差(现在时间， 开始时间)
 ```
 
-### LED steuern
+#### LED steuern
 
 ```python
 from pyb import LED
@@ -335,7 +354,7 @@ led.intensity([value])  #获取或设置led的亮度(0~255)
 
 - <https://docs.micropython.org/en/latest/library/pyb.LED.html>
 
-### Allzweckeingabe/-ausgabe (engl. GPIO – general purpose input/output) steuern
+#### Allzweckeingabe/-ausgabe (engl. GPIO – general purpose input/output) steuern
 
 ```python
 from pyb import Pin  #引入引脚类
@@ -352,7 +371,7 @@ p_in.value()      #获取I0的电平，0或者1
 
 - <https://docs.micropython.org/en/latest/library/machine.Pin.html>
 
-### Konfigurieren von I/0 Ausgaben um auf externe Ereignisse zu reagieren
+#### Konfigurieren von I/0 Ausgaben um auf externe Ereignisse zu reagieren
 
 Stichworte: Externe Interrupts / Hardwareinterrupts
 
@@ -366,7 +385,7 @@ ext = ExtInt(Pin('A1'), ExtInt.IRQ_RISING, Pin.PULL_NONE, callback) #（引脚�
 
 - <https://docs.micropython.org/en/latest/library/pyb.ExtInt.html>
 
-### Zeitsteuerung-Timer
+#### Zeitsteuerung-Timer
 
 ```shell
 from pyb import Timer
@@ -384,7 +403,7 @@ tim.callback(lambda t: LED(1).toggle())  #通过回调方法，调用python函�
 
 - <http://docs.micropython.org/en/latest/library/pyb.Timer.html>
 
-### Pulsweitenmodulation (PWM)
+#### Pulsweitenmodulation (PWM)
 
 Modulationsart, bei der eine technische Größe (z. B. elektrischer Strom)
 zwischen zwei Werten wechselt.
@@ -401,7 +420,7 @@ ch.pulse_width_percent(50)                #使用的初始脉宽值百分比
 
 - <http://docs.micropython.org/en/latest/library/pyb.Timer.html>
 
-### Analog-Digital-Wandler
+#### Analog-Digital-Wandler
 
 Ein Analog-Digital-Umsetzer ist ein elektronisches Gerät, Bauelement oder
 Teil eines Bauelements zur Umsetzung analoger Eingangssignale in einen
@@ -420,7 +439,7 @@ adc.read()              #读取值，0~4095
 
 - <http://docs.micropython.org/en/latest/library/pyb.ADC.html>
 
-### Verwendung UART-Schnittstelle
+#### Verwendung UART-Schnittstelle
 
 Nach `I2C` und `SPI` ist `UART` das am dritthäufigsten verwendete serielle
 "Bus"-Protokoll.
@@ -449,7 +468,7 @@ uart.read(5)  #最多读取5个字节
 
 - <http://docs.micropython.org/en/latest/library/pyb.UART.html>
 
-### I2C-Ansteuerung
+#### I2C-Ansteuerung
 
 Das I2C-Protokoll (I2C = Inter-Integrated Circuit) ist ein Beispiel für ein
 serielles Protokoll, mit dem Geräte miteinander kommunizieren können. I2C ist
@@ -476,7 +495,7 @@ i2c = I2C(1)
 
 - <http://docs.micropython.org/en/latest/library/pyb.I2C.html>
 
-### Verwendung des Serial Peripheral Interface (SPI)
+#### Verwendung des Serial Peripheral Interface (SPI)
 
 Das SPI-Protokoll oder die serielle Peripherieschnittstelle ist ein weiteres
 Beispiel für ein serielles Protokoll für zwei Geräte zum Senden und Empfangen
@@ -512,10 +531,15 @@ spi.send_recv(b'1234', buf)   #发送4个字节和接收4个字节存储到buf
 
 - <https://docs.micropython.org/en/latest/library/pyb.SPI.html>
 
-### Framebuffer
+#### Framebuffer
 
-## Fortgeschritten
+### Fortgeschritten
 
-### Zeige mehrere Sprachen
+#### Zeige mehrere Sprachen
 
-### Kreiselwert anzeigen
+#### Kreiselwert anzeigen
+
+## CircuitPython
+
+Der Meowbit kann mittels CircuitPython programmiert werden:
+<https://circuitpython.org/board/meowbit_v121/>
