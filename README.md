@@ -1,6 +1,10 @@
 # Meowbit
 
 - [Meowbit](#meowbit)
+  - [Spezifikation](#spezifikation)
+  - [Pinbelegung](#pinbelegung)
+  - [Entwicklungsumgebungen](#entwicklungsumgebungen)
+  - [Dokumentation](#dokumentation)
   - [Python mit Kittenblock](#python-mit-kittenblock)
   - [Bildschirm und Tasten](#bildschirm-und-tasten)
   - [01 Erster Test: 01 Blinkende LED](#01-erster-test-01-blinkende-led)
@@ -39,6 +43,8 @@ es](https://blog.adafruit.com/2019/08/01/new-product-kittenbot-meowbit-codable-c
 seit August 2019. ![Meowbit, bbc:microbit, Calliope
 Mini](images/00-meowbit_microbit_calliope.jpg)
 
+## Spezifikation
+
 Das Meowbit nutzt als Rechenkern einen `STM32F401RET6`, das ist ein
 32-Bit-ARM-Cortex-M4-Prozessor
 ([Datenblatt](http://www.farnell.com/datasheets/1848998.pdf)). Darüber hinaus
@@ -50,7 +56,7 @@ ist eine beeindruckende Menge an Hardware eingebaut:
 - zwei programmierbare LED
 - Reset-Taste
 - DFU-Modus-Taste (auch zum Aufrufen des Menüs durch die Makecode-Firmware)
-- 160 x 128 tft Farbbildschirm
+- 160 x 128 TFT Farbbildschirm (ST7735)
 - Temperaturfühler
 - vier programmierbare Richtungstasten
 - programmierbarer Summer
@@ -59,16 +65,20 @@ ist eine beeindruckende Menge an Hardware eingebaut:
 - USB-Port zum Laden und Programmieren
 - SD-Kartenslot (zum Speichern von Programmen und nachträglichen Erweitern um ein Bluetooth- oder WLAN-Modul)
 - Klinkenbuchse zum Verbinden mehrerer Geräte (JacDac)
-- 6-Achsen-Gyroskop und Beschleunigungsmesser
+- 6-Achsen-Gyroskop und Beschleunigungsmesser (InvenSense MPU-6050)
 - 3,7 V Lithium-Batterie-Schnittstelle
 
 Standardmäßig sind 2 MByte des SPI-Flash-Speichers mit einer Unicode-Zeichentabelle
 belegt.
 
+## Pinbelegung
+
 Hier ist die Pinbelegung der 40-poligen Steckerleiste (Stand: 2020-01-18.
 [Original](https://meowbit-doc.kittenbot.cn/#/more/intro)):
 
 ![Pinbelegung](images/1Sbv9O.png)
+
+## Entwicklungsumgebungen
 
 Das Meowbit kann auf drei Arten programmiert werden:
 
@@ -86,7 +96,7 @@ nur für Windows.
 allerdings noch nicht geschafft, die REPL (Befehlszeile) auf dem Meowbit
 aufzurufen.
 
-## Python mit Kittenblock
+## Dokumentation
 
 Das Meowbit ist eigentlich [sehr gut
 dokumentiert](https://meowbit-doc.kittenbot.cn/#/kittenblock/kittenblockQS),
@@ -94,6 +104,8 @@ leider allerdings nur in Chinesisch. Hier hilft der Chrome-Browser mit seiner
 automatischen Übersetzungsfunktion.
 
 ![Meowbit Dokumentation](images/00-meowbit-doc.png)
+
+## Python mit Kittenblock
 
 Um die Hardware des Meowbit in MicroPython nutzen zu können, müssen einige
 Bibliotheken auf ddas PYBFLASH-Laufwerk gezogen werden. Diese Bibliotheken
