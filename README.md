@@ -8,7 +8,7 @@
     - [Kittenblock](#kittenblock)
     - [Mu-Editor](#mu-editor)
   - [Dokumentation](#dokumentation)
-  - [Python mit Kittenblock](#python-mit-kittenblock)
+  - [Micropython mit Kittenblock](#micropython-mit-kittenblock)
     - [Bildschirm und Tasten](#bildschirm-und-tasten)
     - [01 Erster Test: 01 Blinkende LED](#01-erster-test-01-blinkende-led)
     - [02 Befehle für Leuchtdioden (LEDs)](#02-befehle-f%c3%bcr-leuchtdioden-leds)
@@ -115,6 +115,17 @@ pip3 install -e ".[dev]"
 python3 run.py
 ```
 
+
+Im `Meowbit Micropython` Mode, kann über den Knopf `REPL` auf die MicroPython
+Konsole zu gegriffen werden.
+
+Micropython ist in der Version `MicroPython
+v1.9.4-1433-g25371a707-dirty on 2019-10-23; MEOWBIT with STM32F401xE` mittels
+<https://github.com/KittenBot/s3ext-meowbit/blob/master/meowpy.uf2> verfügbar
+dazu einfach die Datei `meowpy.uf2` auf das Meowbit Laufwerk kopieren.
+
+Die Quelltext liegen hier: <https://github.com/KittenBot/micropython_meowbit>.
+
 ## Dokumentation
 
 Das Meowbit ist eigentlich [sehr gut
@@ -124,11 +135,11 @@ automatischen Übersetzungsfunktion.
 
 ![Meowbit Dokumentation](images/00-meowbit-doc.png)
 
-## Python mit Kittenblock
+## Micropython mit Kittenblock
 
 Um die Hardware des Meowbit in MicroPython nutzen zu können, müssen einige
 Bibliotheken auf das PYBFLASH-Laufwerk gezogen werden. Diese befinden sich in
-dem Scratch 3.0 Extensions Repositorie und können dort heruntergeladen
+dem Scratch 3.0 Extensions Repository und können dort heruntergeladen
 werden: <https://github.com/KittenBot/s3ext-meowbit>.
 
 - `buzz.py` - für den Summer
@@ -543,3 +554,37 @@ spi.send_recv(b'1234', buf)   #发送4个字节和接收4个字节存储到buf
 
 Der Meowbit kann mittels CircuitPython programmiert werden:
 <https://circuitpython.org/board/meowbit_v121/>
+
+Ein Beispiel-Programm:
+
+```python
+import board
+import displayio
+import busio
+import terminalio
+import digitalio
+import time
+from adafruit_display_text import label
+from adafruit_st7735r import ST7735R
+import adafruit_mpu6050
+
+displayio.release_displays()
+
+spi = board.INTERNAL_SPI
+tft_cs = board.DISP_CS
+tft_dc = board.DISP_DC
+
+display_bus = displayio.FourWire(spi, command=tft_dc, chip_select=tft_cs, reset=board.DISP_RST)
+display = ST7735R(display_bus, width=160, height=128, rotation=90, backlight_pin=board.DISP_BL)
+
+
+i2c = busio.I2C(board.SCL, board.SDA)
+mpu = adafruit_mpu6050.MPU6050(i2c)
+
+while True:
+    print("Acceleration: X:%.2f, Y: %.2f, Z: %.2f m/s^2"%(mpu.acceleration))
+    print("Gyro X:%.2f, Y: %.2f, Z: %.2f degrees/s"%(mpu.gyro))
+    print("Temperature: %.2f C"%mpu.temperature)
+    print("")
+    time.sleep(1)
+```
