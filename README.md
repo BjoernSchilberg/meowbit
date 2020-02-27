@@ -35,6 +35,7 @@
       - [Zeige mehrere Sprachen](#zeige-mehrere-sprachen)
       - [Kreiselwert anzeigen](#kreiselwert-anzeigen)
   - [CircuitPython](#circuitpython)
+    - [Optional: CircuitPython selber bauen](#optional-circuitpython-selber-bauen)
 
 Infos und Beispiele zum Meowbit von <https://kittenbot.cn>.
 
@@ -114,7 +115,6 @@ cd mu-kittenbot
 pip3 install -e ".[dev]"
 python3 run.py
 ```
-
 
 Im `Meowbit Micropython` Mode, kann über den Knopf `REPL` auf die MicroPython
 Konsole zu gegriffen werden.
@@ -587,4 +587,17 @@ while True:
     print("Temperature: %.2f C"%mpu.temperature)
     print("")
     time.sleep(1)
+```
+
+### Optional: CircuitPython selber bauen
+
+```shell
+git clone https://github.com/adafruit/circuitpython.git
+cd circuitpython
+git submodule sync
+git submodule update --init
+git submodule update --recursive
+make -C mpy-cross
+cd ports/stm32f4/
+make V=1 BOARD=meowbit_v121
 ```
