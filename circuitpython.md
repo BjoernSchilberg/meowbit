@@ -57,6 +57,10 @@ lib/
 └── mpu6050.py
 ```
 
+Weitere Details sind in der Doku der
+[mpu6050-CircuitPython-Bibliothek](https://github.com/adafruit/Adafruit_CircuitPython_MPU6050)
+zu finden.
+
 ## Ein Beispiel-Programm
 
 ```python
