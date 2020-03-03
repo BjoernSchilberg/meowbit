@@ -32,20 +32,19 @@ ist eine beeindruckende Menge an Hardware eingebaut:
 - zwei programmierbare LED
 - Reset-Taste
 - DFU-Modus-Taste (auch zum Aufrufen des Menüs durch die Makecode-Firmware)
-- 160 x 128 TFT Farbbildschirm (ST7735)
-- Temperaturfühler
+- 160 x 128 TFT Farbbildschirm ([ST7735R](https://cdn-shop.adafruit.com/datasheets/ST7735R_V0.2.pdf))
 - vier programmierbare Richtungstasten
 - programmierbarer Summer
 - zwei programmierbare Tasten A und B
-- 40-Pin-Goldkontaktleiste, kompatibel zum micro:bit
+- 40-Pin-Goldkontaktleiste, kompatibel zum [BBC micro:bit](https://microbit.org/)
 - USB-Port zum Laden und Programmieren
 - SD-Kartenslot (zum Speichern von Programmen und nachträglichen Erweitern um ein Bluetooth- oder WLAN-Modul)
-- Klinkenbuchse zum Verbinden mehrerer Geräte (JacDac)
-- 6-Achsen-Gyroskop und Beschleunigungsmesser (InvenSense MPU-6050)
+- Klinkenbuchse zum Verbinden mehrerer Geräte ([JACDAC](https://jacdac.org/))
+- Temperaturfühler, 6-Achsen-Gyroskop und Beschleunigungsmesser ([InvenSense MPU-6050](https://invensense.tdk.com/products/motion-tracking/6-axis/mpu-6050/))
 - 3,7 V Lithium-Batterie-Schnittstelle
 
-Standardmäßig sind 2 MByte des SPI-Flash-Speichers mit einer Unicode-Zeichentabelle
-belegt.
+Standardmäßig sind 2 MByte des SPI-Flash-Speichers mit einer
+Unicode-Zeichentabelle belegt.
 
 ## Pinbelegung
 
