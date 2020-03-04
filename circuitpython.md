@@ -95,6 +95,39 @@ while True:
     time.sleep(1)
 ```
 
+## Anschließen von Seeed Studio Grove Sensoren
+
+Benötigt wird ein [Seeed Studio Grove Shield for micro:bit
+v2.0](https://www.seeedstudio.com/Grove-Shield-for-micro-bit-v2-0.html). Und ein paar Sensoren:
+- https://docs.google.com/spreadsheets/d/123yBkwL2mo8Zt2CCPW4_MX4TCSTSj8BVLRSmSZeEYzg/edit#gid=1056399402
+
+### Seeed Studio Grove - 4 Ziffern Anzeige (4-Digit Display) (TM1637 LED MODULE)
+
+- Chip: TM1637
+- Interface: Digital
+- Operating / Voltage: 5V
+
+- <https://www.seeedstudio.com/Grove-4-Digit-Display-p-1651.html>
+- <https://github.com/bablokb/circuitpython-tm1637>
+
+```python
+import board
+import TM1637
+
+
+if __name__ == "__main__":
+  CLK = board.P1
+  DIO = board.P15
+  display = TM1637.TM1637(CLK, DIO)
+  #display.hex(0xceef)
+  #display.numbers(11,11)
+  #display.temperature(11)
+  display.show("Ahoy")
+  ## time delay_ms doesnt exist, the following will not work (for now).
+  ## details: https://blog.oddbit.com/post/2018-05-03-using-a-tm-led-module-with-cir/
+  #display.scroll("Ahoy Pirate")
+```
+
 ## Optional: CircuitPython selber bauen
 
 ```shell
