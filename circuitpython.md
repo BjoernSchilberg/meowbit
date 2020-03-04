@@ -1,6 +1,11 @@
 # CircuitPython
 
 - [CircuitPython](#circuitpython)
+  - [Installieren von benötigten Biblotheken (CircuitPython Library Bundle)](#installieren-von-ben%c3%b6tigten-biblotheken-circuitpython-library-bundle)
+  - [Ein Beispiel-Programm](#ein-beispiel-programm)
+  - [Anschließen von Seeed Studio Grove Sensoren](#anschlie%c3%9fen-von-seeed-studio-grove-sensoren)
+    - [Seeed Studio Grove - 4 Ziffern Anzeige (4-Digit Display) (TM1637 LED MODULE)](#seeed-studio-grove---4-ziffern-anzeige-4-digit-display-tm1637-led-module)
+    - [Seeed Studio Grove - Temperatursensor](#seeed-studio-grove---temperatursensor)
   - [Optional: CircuitPython selber bauen](#optional-circuitpython-selber-bauen)
 
 Der Meowbit kann mittels CircuitPython programmiert werden:
@@ -99,7 +104,12 @@ while True:
 
 Benötigt wird ein [Seeed Studio Grove Shield for micro:bit
 v2.0](https://www.seeedstudio.com/Grove-Shield-for-micro-bit-v2-0.html). Und ein paar Sensoren:
-- https://docs.google.com/spreadsheets/d/123yBkwL2mo8Zt2CCPW4_MX4TCSTSj8BVLRSmSZeEYzg/edit#gid=1056399402
+
+- <https://docs.google.com/spreadsheets/d/123yBkwL2mo8Zt2CCPW4_MX4TCSTSj8BVLRSmSZeEYzg/edit#gid=1056399402>
+
+Grove Inventor Kit for micro:bit User Manual:
+
+- <https://github.com/SeeedDocument/Grove_kit_for_microbit/blob/master/res/Guide-Grove%20kit%20for%20microbit.pdf>
 
 ### Seeed Studio Grove - 4 Ziffern Anzeige (4-Digit Display) (TM1637 LED MODULE)
 
@@ -109,6 +119,7 @@ v2.0](https://www.seeedstudio.com/Grove-Shield-for-micro-bit-v2-0.html). Und ein
 
 - <https://www.seeedstudio.com/Grove-4-Digit-Display-p-1651.html>
 - <https://github.com/bablokb/circuitpython-tm1637>
+- <https://learn.adafruit.com/circuitpython-essentials/circuitpython-digital-in-out>
 
 ```python
 import board
@@ -126,6 +137,42 @@ if __name__ == "__main__":
   ## time delay_ms doesnt exist, the following will not work (for now).
   ## details: https://blog.oddbit.com/post/2018-05-03-using-a-tm-led-module-with-cir/
   #display.scroll("Ahoy Pirate")
+```
+
+### Seeed Studio Grove - Temperatursensor
+
+- IC Manufacture: NTC Thermistors
+- Sensor / IC : NCP18WF104F03RC
+- Operating Voltage : 3.3/5V
+- Interface: Analog
+- Measurable Range: -40 to 125°C
+- Accurac / Sensitivty: +/- 1.5°C
+
+- <https://www.seeedstudio.com/Grove-Temperature-Sensor.html>
+- <https://github.com/SeeedDocument/Grove-Temperature_Sensor_V1.2/raw/master/res/NCP18WF104F03RC.pdf>
+
+```python
+import time
+import board
+import adafruit_thermistor
+
+#pin = analogio.AnalogIn(board.P1)
+pin = board.P1
+
+# pylint: disable=no-member
+resistor = 100000
+resistance = 100000
+nominal_temp = 25
+b_coefficient = 4250
+
+thermistor = adafruit_thermistor.Thermistor(pin, resistor, resistance, nominal_temp, b_coefficient)
+
+# print the temperature in C and F to the serial console every second
+while True:
+    celsius = thermistor.temperature
+    fahrenheit = (celsius * 9 / 5) + 32
+    print('== Temperature ==\n{} *C\n{} *F\n'.format(celsius, fahrenheit))
+    time.sleep(1)
 ```
 
 ## Optional: CircuitPython selber bauen
