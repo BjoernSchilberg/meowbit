@@ -100,6 +100,52 @@ while True:
     time.sleep(1)
 ```
 
+## Zeichnen mit Turtle-Grafik
+
+Mit Turtle-Grafik, auch Igelgrafik, wird eine Bildbeschreibungssprache
+bezeichnet, bei der man sich vorstellt, dass ein stifttragender Roboter (die
+Schildkröte, engl. „turtle“) sich auf der Zeichenebene bewegt und mit einfachen
+Kommandos, wie Stift heben, senken, vorwärts laufen und drehen, gesteuert
+werden kann.
+
+Quelle: <https://de.wikipedia.org/wiki/Turtle-Grafik>
+
+Materialien von Adafruit:
+<https://learn.adafruit.com/circuitpython-turtle-graphics/overview>.
+Dokumentation der Turtle-API:
+<https://learn.adafruit.com/circuitpython-turtle-graphics/the-turtle-api>.
+
+Beispiel-Programm:
+
+```python
+import board
+from adafruit_turtle import Color, turtle
+
+turtle = turtle(board.DISPLAY)
+print("Turtle time! Lets draw a simple square")
+
+turtle.pencolor(Color.WHITE)
+turtle.pendown()
+
+for _ in range(4):
+    turtle.forward(25)
+    turtle.left(90)
+
+while True:
+    pass
+```
+
+Benötigte Biblotheken:
+
+```shell
+lib/
+├── adafruit_bus_device/
+├── adafruit_logging.mpy
+└── adafruit_turtle.mpy
+```
+
+Weitere Beispiele: <https://learn.adafruit.com/circuitpython-turtle-graphics/example-scripts>.
+
 ## Anschließen von Seeed Studio Grove Sensoren
 
 Benötigt wird ein [Seeed Studio Grove Shield for micro:bit
